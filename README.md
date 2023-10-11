@@ -1,8 +1,9 @@
 # Rust-vs-Cpp
 A casual comparison of Rust to C++ in speed performance
 
-I asked ChatGPT to write a few matrix routines in Rust and made very minor tweeks to the code.  I then ported the code line by line to C++.  I compiled both using the general command line for compiling:
+## I asked ChatGPT to write a few matrix routines in Rust and made very minor tweeks to the code.  I then ported the code line by line to C++.  I compiled both using the general command line for compiling:
 
+```
 busysteve@somewhere:~/rdev$ rustc rust_matrix.rs 
 busysteve@somewhere:~/rdev$ g++ -o cpp_matrix cpp_matrix.cpp
 
@@ -34,11 +35,11 @@ Done
 real	0m2.078s
 user	0m2.073s
 sys	0m0.005s
+```
 
+## Now I realize that the general command line builds are not "optimal", so I did a little optimization:
 
-Now I realize that the general command line builds are not "optimal", so I did a little optimization:
-
-
+```
 busysteve@somewhere:~/rdev$ rustc -C debuginfo=0 -C opt-level=3 rust_matrix.rs
 busysteve@somewhere:~/rdev$ time ./rust_matrix 
 55 145 235 325 415 
@@ -67,3 +68,5 @@ Done
 real	0m0.203s
 user	0m0.195s
 sys	0m0.009s
+
+```
